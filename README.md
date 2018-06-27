@@ -107,6 +107,115 @@ The last bit of data cleaning needed was discovered further into the project. Th
 #### Import Needed Libraries
 The following libraries were used to build a Spark Context on my Hadoop Cluster, import the tweet data, topic model the tweet data, conduct sentiment analysis on the tweet data, and visualize that sentiment analysis:
 
+1. import findspark
+2. import string
+3. import re as re
+4. import nltk
+5. import time
+6. from pyspark.sql import SQLContext
+7. from pyspark.sql.types import *
+8. from pyspark.sql.functions import monotonically_increasing_id
+9. from pyspark.mllib.util import MLUtils
+10. from pyspark.ml.feature import RegexTokenizer, Tokenizer, StopWordsRemover, CountVectorizer, CountVectorizerModel, StopWordsRemover
+11. from pyspark.mllib.clustering import LDA, LDAModel
+12. from nltk.corpus import stopwords
+13. from pyspark.mllib.linalg import Vector as oldVector, Vectors as oldVectors
+14. from pyspark.ml.linalg import Vector as newVector, Vectors as newVectors
+15. from pyspark.ml.feature import IDF
+16. import numpy as np
+17. import matplotlib.pyplot as plt
+18. import pyspark.sql.functions as func
 
+#### Create an SQL Context
+This will be used for sql like distriburted data processing. As I get more familiar with what technology to use where I will be switching between using pyspard RDDs, pyspark dataframes, and pandas dataframes
+
+sqlContext = SQLContext(sc)
+
+#### Hadoop is the filesystem being used
+This is a three node virtual cluster. Read in data from Hadoop
+
+ITData = sc.textFile("hdfs:////user/vagrant/practicum/input")
+
+#### Partitioning
+By default, data is partitioned based on the data size. While I have over 8 million cleaned records collected. I have limited the number of records to approximately 100,000. I have had issues with my hadoop cluster processing through the data. I will need to gain a better understanding of the sizing needs as it relates to data size. 100,000 records produces 6 partitions.
+
+#### Check the number of partitions created
+
+ITData.getNumPartitions()
+
+#### Additional data Cleaning
+Further clean tweets, split them out into individual words, and number them by adding an index.
+
+tokens = tweet.map(lambda document: document.strip().lower()) \
+              .map(lambda document: re.split(" ", document)) \
+              .map(lambda word: [x for x in word if x.isalpha()]) \
+              .map(lambda word: [x for x in word if len(x) > 3]) \
+              .map(lambda word: [x for x in word if x not in StopWords]) \
+              .zipWithIndex()
+
+#### Prepare for Topic Modeling    
+cv = CountVectorizer(inputCol="tweet_words", outputCol="raw_features", vocabSize=5000, minDF=10.0)
+cvmodel = cv.fit(tweet_df)
+result_cv = cvmodel.transform(tweet_df)       
+idf = IDF(inputCol="raw_features", outputCol="features")
+idfModel = idf.fit(result_cv)
+result_tfidf = idfModel.transform(result_cv)
+
+#### Run Topic Modeler
+num_topics = 10
+max_iterations = 20
+lda_model = LDA.train(rs_df['index', 'raw_features'].rdd.map(list), k=num_topics, maxIterations=max_iterations)
+
+#### Display topics
+for topic in range(len(topics_final)):
+    print("Topic" + str(topic) + ":")
+    for term in topics_final[topic]:
+        print(term)
+    print('\n')
+
+#### Set search terms
+The above above relates topics to the terms I searched in Twitter.  
+For sentiment analysis, I would like to rate the actual search terms. For this I will build a python array with those search terms
+
+search_terms = ["machine_learning", "computer_programmer", "database_engineer", "network_engineer", \
+"data_scientist", "systems_engineer", "data_analyst", "data_architect", "etl_architect", \
+"web_programmer", "automation_engineer", "data_processing", "application_engineer", \
+"software_engineer", "software_developer", "information_architect", "security_analyst", \
+"business_intelligence", "enterprise_architect", "solution_architect", "data_warehouse", \
+"information_technology", "data", "java", "iot", "computer", "systems", "technology", \
+"etl", "devops", "cloud", "developer", "programmer", "ai"]    
+
+#### Relate the search term to the tweet
+This will relate the search term to the tweet so later I can relate the sentiment of the tweet to the search term.
+
+def SearchTopics(topics, tweet_text):
+    for term in topics:
+        result = tweet_text.find(term)
+        if result > -1:
+            return term, tweet_text
+    return 'NA', tweet_text
+
+While removing stopwords helps obtain valid topics it will not help with sentiment analysis. With topics in hand, topic_tweet, we will use tweets where stop words have not been removed. Search each tweet for topics returning only tweets that match. SearchTopics will return both the topic and the related tweet. Sentiment will be done on these tweets.
+
+topic_tweet = tweet.map(lambda x: SearchTopics(search_terms, x)).filter(lambda x: x[0] != 'NA')
+
+#### Setup sentiment analysis using nltk
+
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+nltk.download('vader_lexicon')
+
+#### Python function to print the sentiment scores
+This function will have topic and related tweet as input. This function will perform sentiment analysis and output topic, tweet, and sentiment. Also note this function will only return the compound portion of the sentiment.
+
+def print_sentiment_scores(topic, sentence):
+    snt = SentimentIntensityAnalyzer().polarity_scores(sentence)
+    print("{:-<40} {}".format(sentence, str(snt)))
+    print(str(snt))
+    return(topic, sentence, str(snt.get('compound')))
+
+#### Retrieve sentiment for each topic, tweet
+topic_tweet_sentiment = topic_tweet.map(lambda x: print_sentiment_scores(x[0], x[1]))
+        
 #### Exploratory Data analysis
 While I only pulled back tweets with the above search terms, I still wanted to pick out topics from those tweets. I used MLIB's LDA to achieve this.
