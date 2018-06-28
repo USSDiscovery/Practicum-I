@@ -216,6 +216,51 @@ def print_sentiment_scores(topic, sentence):
 
 #### Retrieve sentiment for each topic, tweet
 topic_tweet_sentiment = topic_tweet.map(lambda x: print_sentiment_scores(x[0], x[1]))
-        
+
 #### Exploratory Data analysis
 While I only pulled back tweets with the above search terms, I still wanted to pick out topics from those tweets. I used MLIB's LDA to achieve this.
+
+###### Topic List
+![alt tag](pTopicList.png "Topic list")
+
+###### Topic Sentiment List
+![alt tag](pTopicSentimentList.png "Topic Sentiment list")
+
+###### Search List
+![alt tag](pSearchList.png "Search list")
+
+###### Search List Count Bar Chart
+![alt tag](pSearchListCountBarChart.png "Search List Count Bar Chart")
+
+###### Search Term Counts
+![alt tag](pSearchTermCounts.png "Search Term Counts")
+
+###### Topic Sentiment Average
+![alt tag](pTopicSentimentAvg.png "Topic Sentiment Average")
+
+###### Topic Sentiment Average Box Plot 1
+![alt tag](pTopicSentimentAvgBoxPlot1.png "Topic Sentiment Average BoxPlot1")
+
+###### Topic Sentiment Average Box Plot 2
+![alt tag](pTopicSentimentAvgBoxPlot2.png "Topic Sentiment Average Box Plot 2")
+
+###### Topic Sentiment list
+![alt tag](pTopicSentimentList.png "Topic Sentiment list")
+
+
+#### References:
+Databricks. Topic Modeling with Latent Dirichlet Allocation. In Databricks. Retrieved 18:00, June 27, 2018, from https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/3741049972324885/3783546674231782/4413065072037724/latest.html
+
+Bergvca. (2016) Example on how to do LDA in Spark ML and MLLib with python. In GitHubGist. Retrieved 18:00, June 27, 2018, from https://gist.github.com/Bergvca/a59b127afe46c1c1c479
+
+Soumya Ghosh. (2018, March 17). Topic Modeling with Latent Dirichlet Allocation (LDA) in Pyspark. In Medium. Retrieved 18:00, June 27, 2018, from https://medium.com/@connectwithghosh/topic-modelling-with-latent-dirichlet-allocation-lda-in-pyspark-2cb3ebd5678e
+
+Hacertilbec. (2016, May 7). LDA-spark-python. In GitHub. Retrieved 18:00, June 27, 2018, from https://github.com/hacertilbec/LDA-spark-python/blob/master/SparkLDA.py
+
+Shane Lynn. Summarising, Aggregating, and Grouping data in Python Pandas. In Blog. Retrieved 18:00, June 27, 2018, fromhttps://www.shanelynn.ie/summarising-aggregation-and-grouping-data-in-python-pandas/
+
+Python, R, and Linux Tips. (2018, March 14). How to Make Boxplots in Python with Pandas and Seaborn. In Python, R, and Linux Tips. Retrieved 18:00, June 27, 2018, from http://cmdlinetips.com/2018/03/how-to-make-boxplots-in-python-with-pandas-and-seaborn/
+
+Chris Moffitt. (2014, October 26). Simple Graphing with IPython and Pandas. In Practical Business Python. Retrieved 18:00, June 27, 2018, from http://pbpython.com/simple-graphing-pandas.html
+
+ideoforms. (2015, April 25). python-twitter-examples. In GitHub. Retrieved 18:00, June 27, 2018, from https://github.com/ideoforms/python-twitter-examples/blob/master/twitter-stream-search.py
