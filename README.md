@@ -260,6 +260,13 @@ While I only pulled back tweets with the above search terms, I still wanted to p
 ###### Topic Sentiment Average Box Plot 2
 ![alt tag](Images/pTopicSentimentAvgBoxPlot2.png "Topic Sentiment Average Box Plot 2")
 
+#### Conclusion
+Understanding data volumes, tool  choice, and how both affect analysis performance and capability is very important. With the types of data volumes that I initially set out to process I would have been better served running a very small sample locally and then provisioning a cluster in the cloud to run the complete dataset. Having said that, I found that running a subset of the data did provide results.
+
+For the period that I collected tweets, the predominant topics around Information Technology were Facebook and China. Additionally, I found sentiment to be mostly positive.
+
+#### Link to Video
+
 
 #### References:
 Databricks. Topic Modeling with Latent Dirichlet Allocation. In Databricks. Retrieved 18:00, June 27, 2018, from https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/3741049972324885/3783546674231782/4413065072037724/latest.html
