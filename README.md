@@ -82,6 +82,19 @@ My Tweets consisted of the following fields:
 
 For this project I really only needed the tweet_text but I wanted to bring back as much information that I could should I want to do time based analysis or utilize the geo fields to perhaps break down sentiment by location.
 
+#### Data Samples
+###### Pre Clean File Listing
+![alt tag](Images/pDataSetPreCleanListing.png "Pre Clean File Listing")
+
+###### Pre Clean File Sample
+![alt tag](Images/pDataSetPreCleanSample.png "Pre Clean File Sample")
+
+###### Post Clean File Listing
+![alt tag](Images/pDataSetPostCleanListing.png "Post Clean File Listing")
+
+###### Post Clean File Sample
+![alt tag](Images/pDataSetPostCleanSample.png "Post Clean File Sample")
+
 #### Data Cleaning
 Initially the only data cleaning I did was to within each field remove commas and newlines. I did this thinking that with free form fields users could add commas and newlines. Little did I know that this was just the beginning. Thinking back, I really should have known that more data cleaning up front would have been needed.
 
