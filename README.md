@@ -221,31 +221,31 @@ topic_tweet_sentiment = topic_tweet.map(lambda x: print_sentiment_scores(x[0], x
 While I only pulled back tweets with the above search terms, I still wanted to pick out topics from those tweets. I used MLIB's LDA to achieve this.
 
 ###### Topic List
-![alt tag](pTopicList.png "Topic list")
+![alt tag](Images/pTopicList.png "Topic list")
 
 ###### Topic Sentiment List
-![alt tag](pTopicSentimentList.png "Topic Sentiment list")
+![alt tag](Images/pTopicSentimentList.png "Topic Sentiment list")
 
 ###### Search List
-![alt tag](pSearchList.png "Search list")
+![alt tag](Images/pSearchList.png "Search list")
 
 ###### Search List Count Bar Chart
-![alt tag](pSearchListCountBarChart.png "Search List Count Bar Chart")
+![alt tag](Images/pSearchListCountBarChart.png "Search List Count Bar Chart")
 
 ###### Search Term Counts
-![alt tag](pSearchTermCounts.png "Search Term Counts")
+![alt tag](Images/pSearchTermCounts.png "Search Term Counts")
 
 ###### Topic Sentiment Average
-![alt tag](pTopicSentimentAvg.png "Topic Sentiment Average")
+![alt tag](Images/pTopicSentimentAvg.png "Topic Sentiment Average")
 
 ###### Topic Sentiment Average Box Plot 1
-![alt tag](pTopicSentimentAvgBoxPlot1.png "Topic Sentiment Average BoxPlot1")
+![alt tag](Images/pTopicSentimentAvgBoxPlot1.png "Topic Sentiment Average BoxPlot1")
 
 ###### Topic Sentiment Average Box Plot 2
-![alt tag](pTopicSentimentAvgBoxPlot2.png "Topic Sentiment Average Box Plot 2")
+![alt tag](Images/pTopicSentimentAvgBoxPlot2.png "Topic Sentiment Average Box Plot 2")
 
 ###### Topic Sentiment list
-![alt tag](pTopicSentimentList.png "Topic Sentiment list")
+![alt tag](Images/pTopicSentimentList.png "Topic Sentiment list")
 
 
 #### References:
