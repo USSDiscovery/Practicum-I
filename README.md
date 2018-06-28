@@ -229,11 +229,14 @@ While I only pulled back tweets with the above search terms, I still wanted to p
 ###### Search List
 ![alt tag](Images/pSearchList.png "Search list")
 
+###### Search Term Counts
+![alt tag](Images/pSearchTermCounts.png "Search Term Counts")
+
 ###### Search List Count Bar Chart
 ![alt tag](Images/pSearchListCountBarChart.png "Search List Count Bar Chart")
 
-###### Search Term Counts
-![alt tag](Images/pSearchTermCounts.png "Search Term Counts")
+###### Topic Sentiment list
+![alt tag](Images/pTopicSentimentList.png "Topic Sentiment list")
 
 ###### Topic Sentiment Average
 ![alt tag](Images/pTopicSentimentAvg.png "Topic Sentiment Average")
@@ -243,9 +246,6 @@ While I only pulled back tweets with the above search terms, I still wanted to p
 
 ###### Topic Sentiment Average Box Plot 2
 ![alt tag](Images/pTopicSentimentAvgBoxPlot2.png "Topic Sentiment Average Box Plot 2")
-
-###### Topic Sentiment list
-![alt tag](Images/pTopicSentimentList.png "Topic Sentiment list")
 
 
 #### References:
