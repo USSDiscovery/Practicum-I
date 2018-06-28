@@ -265,8 +265,11 @@ Understanding data volumes, tool  choice, and how both affect analysis performan
 
 For the period that I collected tweets, the predominant topics around Information Technology were Facebook and China. Additionally, I found sentiment to be mostly positive.
 
-#### Link to Video
+#### Link to Video Short Version
+https://youtu.be/eq4hwWhzKh0
 
+#### Link to Video Long Version
+https://youtu.be/R_CSr2CvFl8
 
 #### References:
 Databricks. Topic Modeling with Latent Dirichlet Allocation. In Databricks. Retrieved 18:00, June 27, 2018, from https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/3741049972324885/3783546674231782/4413065072037724/latest.html
